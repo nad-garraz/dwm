@@ -2,9 +2,13 @@
 
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
-static const unsigned int gappx     = 30;        /* gaps between windows */
-static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
 static const unsigned int snap      = 32;       /* snap pixel */
+static const unsigned int gappih    = 30;       /* horiz inner gap between windows */
+static const unsigned int gappiv    = 30;       /* vert inner gap between windows */
+static const unsigned int gappoh    = 30;       /* horiz outer gap between windows and screen edge */
+static const unsigned int gappov    = 30;       /* vert outer gap between windows and screen edge */
+static const int smartgaps          = 0;        /* 1 means no outer gap when there is only one window */
+static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "Go Mono Nerd Font:size=10:antialias=true" };
@@ -42,21 +46,36 @@ static const float mfact     = 0.7; /* factor of master area size [0.05..0.95] *
 static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 0;    /* 1 means respect size hints in tiled resizals */
 
+#define FORCE_VSPLIT 1  /* nrowgrid layout: force two clients to always split vertically */
+#include "vanitygaps.c"
+
 static const Layout layouts[] = {
 	/* symbol     arrange function */
 	{ "[]=",      tile },    /* first entry is default */
-	{ "><>",      NULL },    /* no layout function means floating behavior */
 	{ "[M]",      monocle },
+	{ "[@]",      spiral },
+	{ "[\\]",     dwindle },
+	{ "H[]",      deck },
+	{ "TTT",      bstack },
+	{ "===",      bstackhoriz },
+	{ "HHH",      grid },
+	{ "###",      nrowgrid },
+	{ "---",      horizgrid },
+	{ ":::",      gaplessgrid },
+	{ "|M|",      centeredmaster },
+	{ ">M>",      centeredfloatingmaster },
+	{ "><>",      NULL },    /* no layout function means floating behavior */
+	{ NULL,       NULL },
 };
 
 /* key definitions */
 #define MODKEY Mod4Mask
 #define AltMask Mod1Mask
 #define TAGKEYS(KEY,TAG) \
-	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
-	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
-	{ MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
-	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
+{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
+{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
+{ MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
+{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
@@ -81,8 +100,10 @@ static Key keys[] = {
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
 	{ MODKEY|ControlMask,           XK_t,      setlayout,      {.v = &layouts[0]} },
-	{ MODKEY|ControlMask,           XK_f,      setlayout,      {.v = &layouts[1]} },
-	{ MODKEY|ControlMask,           XK_m,      setlayout,      {.v = &layouts[2]} },
+	{ MODKEY|ControlMask,           XK_y,      setlayout,      {.v = &layouts[1]} },
+	{ MODKEY|ControlMask,           XK_u,      setlayout,      {.v = &layouts[2]} },
+	{ MODKEY|ControlMask,           XK_i,      setlayout,      {.v = &layouts[3]} },
+	{ MODKEY|ControlMask,           XK_o,      setlayout,      {.v = &layouts[4]} },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
@@ -91,19 +112,32 @@ static Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
-	{ AltMask|ShiftMask,            XK_bracketleft,  setgaps,        {.i = -1 } },
-	{ AltMask|ShiftMask,            XK_bracketright,  setgaps,        {.i = +1 } },
-	{ AltMask|ShiftMask,            XK_equal,  setgaps,        {.i = 0  } },
-	TAGKEYS(                        XK_1,                      0)
-	TAGKEYS(                        XK_2,                      1)
-	TAGKEYS(                        XK_3,                      2)
-	TAGKEYS(                        XK_4,                      3)
-	TAGKEYS(                        XK_5,                      4)
-	TAGKEYS(                        XK_6,                      5)
-	TAGKEYS(                        XK_7,                      6)
-	TAGKEYS(                        XK_8,                      7)
-	TAGKEYS(                        XK_9,                      8)
-	{ MODKEY|AltMask,             XK_q,      quit,           {0} },
+	{ MODKEY|AltMask,              XK_h,      incrgaps,       {.i = +2 } },
+	{ MODKEY|AltMask,              XK_l,      incrgaps,       {.i = -2 } },
+	{ MODKEY|AltMask|ShiftMask,    XK_h,      incrogaps,      {.i = +1 } },
+	{ MODKEY|AltMask|ShiftMask,    XK_l,      incrogaps,      {.i = -1 } },
+	{ MODKEY|AltMask|ControlMask,  XK_h,      incrigaps,      {.i = +1 } },
+	{ MODKEY|AltMask|ControlMask,  XK_l,      incrigaps,      {.i = -1 } },
+	{ MODKEY|AltMask,              XK_0,      togglegaps,     {0} },
+	{ MODKEY|AltMask|ShiftMask,    XK_0,      defaultgaps,    {0} },
+	{ MODKEY,                      XK_y,      incrihgaps,     {.i = +1 } },
+	{ MODKEY,                      XK_o,      incrihgaps,     {.i = -1 } },
+	{ MODKEY|ControlMask,          XK_y,      incrivgaps,     {.i = +1 } },
+	{ MODKEY|ControlMask,          XK_o,      incrivgaps,     {.i = -1 } },
+	{ MODKEY|AltMask,              XK_y,      incrohgaps,     {.i = +1 } },
+	{ MODKEY|AltMask,              XK_o,      incrohgaps,     {.i = -1 } },
+	{ MODKEY|ShiftMask,            XK_y,      incrovgaps,     {.i = +1 } },
+	{ MODKEY|ShiftMask,            XK_o,      incrovgaps,     {.i = -1 } },
+	TAGKEYS(                       XK_1,                      0)
+		TAGKEYS(                        XK_2,                      1)
+		TAGKEYS(                        XK_3,                      2)
+		TAGKEYS(                        XK_4,                      3)
+		TAGKEYS(                        XK_5,                      4)
+		TAGKEYS(                        XK_6,                      5)
+		TAGKEYS(                        XK_7,                      6)
+		TAGKEYS(                        XK_8,                      7)
+		TAGKEYS(                        XK_9,                      8)
+		{ MODKEY|AltMask,             XK_q,      quit,           {0} },
 };
 
 /* button definitions */
