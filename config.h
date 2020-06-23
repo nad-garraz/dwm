@@ -32,14 +32,14 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class     instance  title           tags mask  isfloating  isterminal  noswallow  monitor */
-	{ "Gimp",    NULL,     NULL,           0,         1,          0,           0,        -1 },
-	{ "Firefox", NULL,     NULL,           1 << 8,    0,          0,          -1,        -1 },
-	{ "Alacritty",      NULL,     NULL,           0,         0,          1,          -1,        -1 },
-	{ "term",      "float",     NULL,           0,         1,          1,          -1,        -1 },
-	{ "mpv",      NULL,     NULL,           0,         1,          1,          -1,        -1 },
-	{ "sxiv",      NULL,     NULL,           0,         0,          1,          -1,        -1 },
-	{ NULL,      NULL,     "Event Tester", 0,         1,          0,           1,        -1 }, /* xev */
+	/* class     	instance  title           tags mask 	iscentered	isfloating	monitor */
+	{ "Gimp",    	NULL,     NULL,           0,        	0,		1,          	-1 },
+	{ "Firefox", 	NULL,     NULL,           1 << 8,   	0,		0,          	-1 },
+	{ "Alacritty",  NULL,     NULL,           0,         	0,          	0,              -1 },
+	{ "term",      	"float",  NULL,           0,         	1,          	1,              -1 },
+	{ "mpv",     	NULL,     NULL,           0,         	1,          	0,              -1 },
+	{ "sxiv",      	NULL,     NULL,           0,         	0,          	0,              -1 },
+	{ NULL,      	NULL,     "Event Tester", 0,        	0,		1,          	-1 }, /* xev */
 };
 
 /* layout(s) */
@@ -102,8 +102,9 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
 	{ MODKEY|ControlMask,           XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY|ControlMask,           XK_y,      setlayout,      {.v = &layouts[1]} },
-	{ MODKEY|ControlMask,           XK_u,      setlayout,      {.v = &layouts[2]} },
-	{ MODKEY|ControlMask,           XK_i,      setlayout,      {.v = &layouts[3]} },
+	{ MODKEY|ControlMask,           XK_u,      setlayout,      {.v = &layouts[7]} },
+	{ MODKEY|ControlMask,           XK_i,      setlayout,      {.v = &layouts[1]} },
+	{ MODKEY|ControlMask,           XK_o,      setlayout,      {.v = &layouts[3]} },
 	{ MODKEY|ControlMask,           XK_o,      setlayout,      {.v = &layouts[4]} },
 	{ MODKEY|ControlMask,		XK_comma,  cyclelayout,    {.i = -1 } },
 	{ MODKEY|ControlMask,           XK_period, cyclelayout,    {.i = +1 } },
