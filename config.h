@@ -18,6 +18,7 @@ static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#FFFFFF";
 static const char col_gray4[]       = "#eeeeee";
 static const char col_cyan[]        = "#555577";
+static const char col_custom[]        = "#555577";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
@@ -83,7 +84,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_custom, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "alacritty", NULL };
 
 static Key keys[] = {
@@ -106,8 +107,8 @@ static Key keys[] = {
 	{ MODKEY|ControlMask,           XK_i,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY|ControlMask,           XK_o,      setlayout,      {.v = &layouts[3]} },
 	{ MODKEY|ControlMask,           XK_o,      setlayout,      {.v = &layouts[4]} },
-	{ MODKEY|ControlMask,		XK_comma,  cyclelayout,    {.i = -1 } },
-	{ MODKEY|ControlMask,           XK_period, cyclelayout,    {.i = +1 } },
+	{ MODKEY|ControlMask,		XK_h,  cyclelayout,    {.i = -1 } },
+	{ MODKEY|ControlMask,           XK_l, cyclelayout,    {.i = +1 } },
 	{ MODKEY|ControlMask,           XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
