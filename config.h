@@ -40,7 +40,7 @@ static const Rule rules[] = {
 	{ "term",      	"float",  NULL,           0,         	1,          	1,              -1 },
 	{ "mpv",     	NULL,     NULL,           0,         	1,          	0,              -1 },
 	{ "sxiv",      	NULL,     NULL,           0,         	0,          	0,              -1 },
-	{ "mpv",  NULL,     "mpvfloat",     0,         	0,          	1,              -1 },
+	{ "mpv",  	NULL,     "mpvfloat",     0,         	1,          	1,              -1 },
 	{ NULL,      	NULL,     "Event Tester", 0,        	0,		1,          	-1 }, /* xev */
 };
 
