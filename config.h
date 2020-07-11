@@ -108,8 +108,8 @@ static Key keys[] = {
 	{ MODKEY|ControlMask,           XK_i,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY|ControlMask,           XK_o,      setlayout,      {.v = &layouts[3]} },
 	{ MODKEY|ControlMask,           XK_o,      setlayout,      {.v = &layouts[4]} },
-	{ MODKEY|ControlMask,		XK_h,  cyclelayout,    {.i = -1 } },
-	{ MODKEY|ControlMask,           XK_l, cyclelayout,    {.i = +1 } },
+	{ MODKEY|ControlMask,		XK_h,  	   cyclelayout,    {.i = -1 } },
+	{ MODKEY|ControlMask,           XK_l,      cyclelayout,    {.i = +1 } },
 	{ MODKEY|ControlMask,           XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
@@ -135,15 +135,15 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_y,      incrovgaps,     {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_o,      incrovgaps,     {.i = -1 } },
 	TAGKEYS(                        XK_1,                      0)
-		TAGKEYS(                        XK_2,                      1)
-		TAGKEYS(                        XK_3,                      2)
-		TAGKEYS(                        XK_4,                      3)
-		TAGKEYS(                        XK_5,                      4)
-		TAGKEYS(                        XK_6,                      5)
-		TAGKEYS(                        XK_7,                      6)
-		TAGKEYS(                        XK_8,                      7)
-		TAGKEYS(                        XK_9,                      8)
-		{ MODKEY|AltMask,             XK_q,      quit,           {0} },
+	TAGKEYS(                        XK_2,                      1)
+	TAGKEYS(                        XK_3,                      2)
+	TAGKEYS(                        XK_4,                      3)
+	TAGKEYS(                        XK_5,                      4)
+	TAGKEYS(                        XK_6,                      5)
+	TAGKEYS(                        XK_7,                      6)
+	TAGKEYS(                        XK_8,                      7)
+	TAGKEYS(                        XK_9,                      8)
+	{ MODKEY|AltMask,               XK_q,      quit,           {0} },
 };
 
 /* button definitions */
