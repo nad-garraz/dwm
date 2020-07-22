@@ -1,7 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 10;        /* border pixel of windows */
+static const unsigned int borderpx  = 8;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const unsigned int gappih    = 25;       /* horiz inner gap between windows */
 static const unsigned int gappiv    = 25;       /* vert inner gap between windows */
@@ -11,14 +11,14 @@ static const int smartgaps          = 0;        /* 1 means no outer gap when the
 static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "monospace:size=12:antialias=true" };
-static const char dmenufont[]       = "monospace:size=12:antialias=true";
+static const char *fonts[]          = { "monospace:size=16:antialias=true" };
+static const char dmenufont[]       = "monospace-16";
 static const char col_gray1[]       = "#000000";
-static const char col_gray2[]       = "#444444";
+static const char col_gray2[]       = "#11111;
 static const char col_gray3[]       = "#FFFFFF";
 static const char col_gray4[]       = "#eeeeee";
-static const char col_cyan[]        = "#775577";
-static const char col_custom[]        = "#555577";
+static const char col_cyan[]        = "#444444";
+static const char col_custom[]      = "#555577";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
