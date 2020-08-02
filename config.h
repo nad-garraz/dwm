@@ -14,7 +14,7 @@ static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "monospace:size=16:antialias=true" };
 static const char dmenufont[]       = "monospace-16";
 static const char col_gray1[]       = "#000000";
-static const char col_gray2[]       = "#11111;
+static const char col_gray2[]       = "#111111";
 static const char col_gray3[]       = "#FFFFFF";
 static const char col_gray4[]       = "#eeeeee";
 static const char col_cyan[]        = "#444444";
@@ -86,6 +86,7 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_custom, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "alacritty", NULL };
+static const char *apagarDmenu[]  = { "apagar_dmenu", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -150,6 +151,7 @@ static Key keys[] = {
 static Button buttons[] = {
 	/* click                event mask      button          function        argument */
 	{ ClkLtSymbol,          0,              Button1,        cyclelayout,      {.i = +1 } },
+	{ ClkLtSymbol,          0,              Button2,        spawn,      { .v = apagarDmenu } },
 	{ ClkLtSymbol,          0,              Button3,        cyclelayout,      {.i = -1 } },
 	{ ClkWinTitle,          0,              Button2,        zoom,           {0} },
 	{ ClkStatusText,        0,              Button1,        sigdwmblocks,   {.i = 1} },
