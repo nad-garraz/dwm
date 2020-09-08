@@ -161,6 +161,7 @@ static Button buttons[] = {
 	{ ClkStatusText,        0,              Button4,        sigdwmblocks,   {.i = 4} },
 	{ ClkStatusText,        0,              Button5,        sigdwmblocks,   {.i = 5} },
 	{ ClkStatusText,        MODKEY,         Button1,        sigdwmblocks,   {.i = 6} },
+	{ ClkStatusText,        AltMask,        Button1,        sigdwmblocks,   {.i = 7} },
 	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
 	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
 	{ ClkClientWin,         AltMask|ShiftMask,         Button1,        resizemouse,    {0} },
