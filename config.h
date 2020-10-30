@@ -39,7 +39,7 @@ static const Rule rules[] = {
 	{ "Alacritty",  NULL,     NULL,           0,         	0,          	0,              -1 },
 	{ "Alacritty",  "float",  NULL,           0,         	1,          	1,              -1 },
 	{ "mpv",  	NULL,     "mpvfloat",     0,         	1,          	1,              -1 },
-	{ "mpv",  	NULL,     "mpvwebcam",    0,         	0,          	1,              -1 },
+	{ "mpv",  	NULL,     "mpvwebcam",    ~0,         	0,          	1,              -1 },
 	{ NULL,      	NULL,     "Event Tester", 0,        	0,		1,          	-1 }, /* xev */
 };
 
@@ -120,20 +120,20 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
 	{ MODKEY|AltMask,               XK_h,      incrgaps,       {.i = +2 } },
 	{ MODKEY|AltMask,               XK_l,      incrgaps,       {.i = -2 } },
-	{ MODKEY|AltMask|ShiftMask,     XK_h,      incrogaps,      {.i = +1 } },
-	{ MODKEY|AltMask|ShiftMask,     XK_l,      incrogaps,      {.i = -1 } },
-	{ MODKEY|AltMask|ControlMask,   XK_h,      incrigaps,      {.i = +1 } },
-	{ MODKEY|AltMask|ControlMask,   XK_l,      incrigaps,      {.i = -1 } },
+	{ MODKEY|AltMask|ShiftMask,     XK_h,      incrogaps,      {.i = +2 } },
+	{ MODKEY|AltMask|ShiftMask,     XK_l,      incrogaps,      {.i = -2 } },
+	{ MODKEY|AltMask|ControlMask,   XK_h,      incrigaps,      {.i = +2 } },
+	{ MODKEY|AltMask|ControlMask,   XK_l,      incrigaps,      {.i = -2 } },
 	{ MODKEY|AltMask,               XK_0,      togglegaps,     {0} },
 	{ MODKEY|AltMask|ShiftMask,     XK_0,      defaultgaps,    {0} },
-	{ MODKEY,                       XK_y,      incrihgaps,     {.i = +1 } },
-	{ MODKEY,                       XK_o,      incrihgaps,     {.i = -1 } },
-	{ MODKEY|ControlMask,           XK_y,      incrivgaps,     {.i = +1 } },
-	{ MODKEY|ControlMask,           XK_o,      incrivgaps,     {.i = -1 } },
-	{ MODKEY|AltMask,               XK_y,      incrohgaps,     {.i = +1 } },
-	{ MODKEY|AltMask,               XK_o,      incrohgaps,     {.i = -1 } },
-	{ MODKEY|ShiftMask,             XK_y,      incrovgaps,     {.i = +1 } },
-	{ MODKEY|ShiftMask,             XK_o,      incrovgaps,     {.i = -1 } },
+	{ MODKEY,                       XK_y,      incrihgaps,     {.i = +2 } },
+	{ MODKEY,                       XK_o,      incrihgaps,     {.i = -2 } },
+	{ MODKEY|ControlMask,           XK_y,      incrivgaps,     {.i = +2 } },
+	{ MODKEY|ControlMask,           XK_o,      incrivgaps,     {.i = -2 } },
+	{ MODKEY|AltMask,               XK_y,      incrohgaps,     {.i = +2 } },
+	{ MODKEY|AltMask,               XK_o,      incrohgaps,     {.i = -2 } },
+	{ MODKEY|ShiftMask,             XK_y,      incrovgaps,     {.i = +2 } },
+	{ MODKEY|ShiftMask,             XK_o,      incrovgaps,     {.i = -2 } },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
