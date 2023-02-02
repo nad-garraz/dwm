@@ -5,13 +5,16 @@ static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
+static const unsigned int baralpha        = OPAQUE;
+// static const unsigned int baralpha        = 0xff;
+static const unsigned int borderalpha     = OPAQUE;
 static const char *fonts[]          = {
 	"DaddyTimeMono Nerd Font Mono:size=15:antialias=true",
 	"Noto Color Emoji:size=13:antialias=true",
 };
 static const char dmenufont[]       = "DaddyTimeMono Nerd Font Mono:size=15:antialias=true";
 static const char col_gray1[]       = "#050505";
-static const char col_gray2[]       = "#999999";
+static const char col_gray2[]       = "#bbbbbb";
 static const char col_gray3[]       = "#ffffff";
 static const char col_gray4[]       = "#333333";
 static const char col_cyan[]        = "#00ffff";
@@ -20,6 +23,12 @@ static const char *colors[][3]      = {
 	[SchemeNorm] = { col_gray2, col_gray1, col_gray2 },
 	[SchemeSel]  = { col_gray3, col_gray1,  col_cyan  },
 };
+static const unsigned int alphas[][3]      = {
+	/*               fg      bg        border     */
+	[SchemeNorm] = { OPAQUE, baralpha, borderalpha },
+	[SchemeSel]  = { OPAQUE, baralpha, borderalpha },
+};
+
 
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
@@ -110,7 +119,7 @@ static Key keys[] = {
 /* click can be ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle, ClkClientWin, or ClkRootWin */
 static Button buttons[] = {
 	/* click                event mask      button          function        argument */
-	{ ClkLtSymbol,     0,                Button1,        setlayout,      {0} },
+	{ ClkLtSymbol,     0,                Button1,        setlayout,      {.v = &layouts[0]} },
 	{ ClkLtSymbol,     0,                Button3,        setlayout,      {.v = &layouts[2]} },
 	{ ClkWinTitle,     0,                Button2,        zoom,           {0} },
 	{ ClkStatusText,   0,                Button1,        sigdwmblocks,   {.i = 1} },
