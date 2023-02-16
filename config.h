@@ -43,8 +43,9 @@ static const Rule rules[] = {
 	{ "Brave",		NULL,     NULL,							0,					0,					0,          	-1 },
 	{ "Alacritty",  NULL,     NULL,           0,         	0,					0,            -1 },
 	{ "Alacritty",  "float",  NULL,           0,         	1,					1,            -1 },
+	{ "Xmessage",		NULL, "xmessage",      0,          1,					1,            -1 },
 	{ "mpv",				NULL,     "mpvfloat",     0,         	1,					1,            -1 },
-	{ "mpv",				NULL,     "mpvwebcam",    ~0,         0,					1,            -1 },
+	{ "mpv",				NULL,     "mpvwebcam",   ~0,          0,					1,            -1 },
 	{ NULL,					NULL,     "Event Tester", 0,        	0,					1,          	-1 }, /* xev */
 };
 
