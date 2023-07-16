@@ -8,8 +8,8 @@ static const int topbar             = 1;        /* 0 means bottom bar */
 static const unsigned int baralpha        = OPAQUE;
 // static const unsigned int baralpha        = 0xff;
 static const unsigned int borderalpha     = OPAQUE;
-static const char *fonts[]          = {"DaddyTimeMono Nerd Font Mono:size=15:antialias=true","Noto Color Emoji:size=13:antialias=true",};
-static const char dmenufont[]       = "DaddyTimeMono Nerd Font Mono:size=15:antialias=true";
+static const char *fonts[]          = {"FantasqueSansM Nerd Font Mono:size=15:antialias=true","noto color emoji:size=13:antialias=true",};
+static const char dmenufont[]       =  "FantasqueSansM Nerd Font Mono:size=15:antialias=true";
 static const char col_gray1[]       = "#050505";
 static const char col_gray2[]       = "#bbbbbb";
 static const char col_gray3[]       = "#ffffff";
